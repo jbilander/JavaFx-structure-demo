@@ -1,0 +1,28 @@
+.button {
+    -fx-font-family: "Arial";
+    -fx-font-size: 12;
+}
+
+.list-view {
+    -fx-background-insets: 0;
+}
+
+.list-cell {
+    -fx-font-family: "Arial";
+    -fx-font-size: 12;
+    -fx-text-fill: -fx-text-inner-color;
+    -fx-opacity: 1;
+    -fx-alignment: center-left;
+}
+
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    -fx-background-color: linear-gradient(#328BDB 0%, #207BCF 25%, #1973C9 75%, #0A65BF 100%);
+    -fx-text-fill: white;
+}
+
+.label {
+    -fx-font-family: "Arial";
+    -fx-font-size: 12;
+    -fx-background-color: lightgray;
+    -fx-alignment: center;
+}
