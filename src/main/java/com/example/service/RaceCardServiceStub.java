@@ -18,7 +18,7 @@ public enum RaceCardServiceStub implements IRaceCardService {
     RaceCardServiceStub() {
 
         RaceCard raceCard = new RaceCard(1, 2, "Semi-Final 100 Meters Men");
-        Race race = new Race(1);
+        Race race = new Race(1, 1);
         race.getParticipants().add(createParticipant(2, 1281, "Akani", "Simbine", "RSA", 9.92, 9.89));
         race.getParticipants().add(createParticipant(3, 1103, "Aska", "Cambridge", "JPN", 10.08, 10.08));
         race.getParticipants().add(createParticipant(4, 953, "James", "Dasaolu", "GBR", 10.06, 9.91));
@@ -29,7 +29,7 @@ public enum RaceCardServiceStub implements IRaceCardService {
         race.getParticipants().add(createParticipant(9, 784, "Zhenye", "Xie", "CHN", 10.09, 10.08));
         raceCard.getRaces().add(race);
 
-        race = new Race(2);
+        race = new Race(2, 2);
         race.getParticipants().add(createParticipant(2, 1165, "Emmanuel", "Matadi", "LBR", 10.18, 10.14));
         race.getParticipants().add(createParticipant(3, 1299, "Alex", "Wilson", "SUI", 10.11, 10.11));
         race.getParticipants().add(createParticipant(4, 1074, "Yohan", "Blake", "JAM", 9.90, 9.69));
@@ -40,7 +40,7 @@ public enum RaceCardServiceStub implements IRaceCardService {
         race.getParticipants().add(createParticipant(9, 976, "Reece", "Prescod", "GBR", 10.03, 10.03));
         raceCard.getRaces().add(race);
 
-        race = new Race(3);
+        race = new Race(3, 3);
         race.getParticipants().add(createParticipant(2, 1120, "Shuhei", "Tada", "JPN", 10.08, 10.08));
         race.getParticipants().add(createParticipant(3, 1343, "Emre Zafer", "Barnes", "TUR", 10.17, 10.12));
         race.getParticipants().add(createParticipant(4, 1386, "Christian", "Coleman", "USA", 9.82, 9.82));
@@ -54,7 +54,7 @@ public enum RaceCardServiceStub implements IRaceCardService {
         raceCards.add(raceCard);
 
         raceCard = new RaceCard(2, 1, "Semi-Final 100 Meters Women");
-        race = new Race(1);
+        race = new Race(4, 1);
         race.getParticipants().add(createParticipant(2, 4261, "Kelly-Ann", "Baptiste", "TTO", 10.88, 10.84));
         race.getParticipants().add(createParticipant(3, 4025, "Simone", "Facey", "JAM", 11.04, 10.95));
         race.getParticipants().add(createParticipant(4, 3901, "Daryll", "Neita", "GBR", 11.14, 11.14));
@@ -65,7 +65,7 @@ public enum RaceCardServiceStub implements IRaceCardService {
         race.getParticipants().add(createParticipant(9, 4034, "Jura", "Levy", "JAM", 11.06, 11.06));
         raceCard.getRaces().add(race);
 
-        race = new Race(2);
+        race = new Race(5, 2);
         race.getParticipants().add(createParticipant(2, 4181, "Ewa", "Swoboda", "POL", 11.24, 11.12));
         race.getParticipants().add(createParticipant(3, 3889, "Desiree", "Henry", "GBR", 11.09, 11.06));
         race.getParticipants().add(createParticipant(4, 4046, "Elaine", "Thompson", "JAM", 10.71, 10.70));
@@ -76,7 +76,7 @@ public enum RaceCardServiceStub implements IRaceCardService {
         race.getParticipants().add(createParticipant(9, 4204, "Carina", "Horn", "RSA", 11.10, 11.06));
         raceCard.getRaces().add(race);
 
-        race = new Race(3);
+        race = new Race(6, 3);
         race.getParticipants().add(createParticipant(2, 3905, "Asha", "Philip", "GBR", 11.14, 11.10));
         race.getParticipants().add(createParticipant(3, 4235, "Salomé", "Kora", "SUI", 11.27, 11.27));
         race.getParticipants().add(createParticipant(4, 4317, "Tori", "Bowie", "USA", 10.90, 10.78));
