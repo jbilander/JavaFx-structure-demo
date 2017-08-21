@@ -14,13 +14,13 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
 
         if (!(Util.isWindows() || Util.isMac())) { //Load Arial font for all *nix platforms
-            Font.loadFont(getClass().getResource(Util.FILE_SEPARATOR + "Arial.ttf").toExternalForm(), 12);
+            Font.loadFont(getClass().getClassLoader().getResource("Arial.ttf").toExternalForm(), 12);
         }
 
         RootView rootView = new RootView();
         Pane root = rootView.getView();
         Scene scene = new Scene(root, Util.APP_WIDTH, Util.APP_HEIGHT);
-        scene.getStylesheets().add(getClass().getResource(Util.FILE_SEPARATOR + "app.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getClassLoader().getResource("app.css").toExternalForm());
         stage.setTitle(Util.TITLE);
         stage.setScene(scene);
         stage.show();
