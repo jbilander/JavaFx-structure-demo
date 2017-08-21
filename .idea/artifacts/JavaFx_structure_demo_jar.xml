@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="JavaFx-structure-demo:jar">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="JavaFx-structure-demo.jar">
+      <element id="module-output" name="JavaFx-structure-demo" />
+    </root>
+  </artifact>
+</component>
