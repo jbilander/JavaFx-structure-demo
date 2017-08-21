@@ -44,7 +44,7 @@ The application creates and populates a JavaFx-structure-demo.db file under the 
 
 <h4> Screenshot of application </h4>
 
-<img src="https://github.com/jbilander/JavaFx-structure-demo/blob/master/app_screenshot.png">
+<img src="https://github.com/jbilander/JavaFx-structure-demo/blob/master/app_screenshot_macos.png">
 <img src="https://github.com/jbilander/JavaFx-structure-demo/blob/master/app_screenshot_windows.png">
 <img src="https://github.com/jbilander/JavaFx-structure-demo/blob/master/app_screenshot_linux.png">
 
@@ -54,6 +54,7 @@ The application creates and populates a JavaFx-structure-demo.db file under the 
 * run with:
 > java -m com.example/com.example.Main
 
+<br />
 <h4> Create a reduced native runtime image with jlink </h4>
 
 Build artifacts (jars) from the modules. From within Intellij choose Build->Build Artifacts...
