@@ -33,22 +33,22 @@ The Xerial source is included as a module named *sqlite-jdbc* in the application
 
 The application creates and populates a JavaFx-structure-demo.db file under the user home directory, System.getProperty("user.home").
 
-MacOS<br />
+* MacOS
 >/Users/username/JavaFx-structure-demo.db
 
-Windows<br />
+* Windows
 >C:\Users\username\JavaFx-structure-demo.db
 
-Linux<br />
+* Linux
 >/home/username/JavaFx-structure-demo.db
 
 <h4> Screenshot of application </h4>
 
-* MacOS
+MacOS<br />
 <img src="https://github.com/jbilander/JavaFx-structure-demo/blob/master/app_screenshot_macos.png">
-* Windows
+<br />Windows<br />
 <img src="https://github.com/jbilander/JavaFx-structure-demo/blob/master/app_screenshot_windows.png">
-* Linux Mint
+<br />Linux Mint<br />
 <img src="https://github.com/jbilander/JavaFx-structure-demo/blob/master/app_screenshot_linux.png">
 
 <h4> Usage </h4>
