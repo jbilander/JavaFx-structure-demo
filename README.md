@@ -44,11 +44,11 @@ The application creates and populates a JavaFx-structure-demo.db file under the 
 
 <h4> Screenshot of application </h4>
 
-MacOS:
+* MacOS
 <img src="https://github.com/jbilander/JavaFx-structure-demo/blob/master/app_screenshot_macos.png">
-Windows:
+* Windows:
 <img src="https://github.com/jbilander/JavaFx-structure-demo/blob/master/app_screenshot_windows.png">
-Linux Mint:
+* Linux Mint:
 <img src="https://github.com/jbilander/JavaFx-structure-demo/blob/master/app_screenshot_linux.png">
 
 <h4> Usage </h4>
