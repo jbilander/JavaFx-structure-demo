@@ -33,9 +33,20 @@ The Xerial source is included as a module named *sqlite-jdbc* in the application
 
 The application creates and populates a JavaFx-structure-demo.db file under the user home directory, System.getProperty("user.home").
 
+* MacOS
+>/Users/username
+
+* Windows
+>C:\Users\username
+
+* Linux
+>/home/username
+
 <h4> Screenshot of application </h4>
 
 <img src="https://github.com/jbilander/JavaFx-structure-demo/blob/master/app_screenshot.png">
+<img src="https://github.com/jbilander/JavaFx-structure-demo/blob/master/app_screenshot_windows.png">
+<img src="https://github.com/jbilander/JavaFx-structure-demo/blob/master/app_screenshot_linux.png">
 
 <h4> Usage </h4>
 
@@ -43,3 +54,37 @@ The application creates and populates a JavaFx-structure-demo.db file under the 
 * run with:
 > java -m com.example/com.example.Main
 
+<h4> Create a reduced native runtime image with jlink </h4>
+
+Build artifacts (jars) from the modules. From within Intellij choose Build->Build Artifacts...
+
+Now the following two jars should have been created under the target folder:
+
+* JavaFx-strucure-demo.jar (including a MANIFEST.MF-file containing "Main-Class: com.example.Main")
+* sqlite-jdbc.jar
+
+Run the following jlink command from the target catalog
+
+* MacOS (61 MB)
+
+>jlink --output release/JavaFx-structure-demo --compress=2 --module-path="JavaFx-structure-demo.jar:sqlite-jdbc.jar:/Library/Java/JavaVirtualMachines/jdk-9.jdk/Contents/Home/jmods" --add-modules com.example,sqlite.jdbc
+
+* Windows (59 MB)
+
+>jlink --output release/JavaFx-structure-demo --compress=2 --module-path="JavaFx-structure-demo.jar;sqlite-jdbc.jar;C:\Program Files\Java\jdk-9\jmods" --add-modules com.example,sqlite.jdbc
+
+* Linux (72 MB)
+
+>jlink --output release/JavaFx-structure-demo --compress=2 --module-path="JavaFx-structure-demo.jar:sqlite-jdbc.jar:/opt/jdk-9/jmods" --add-modules com.example,sqlite.jdbc
+
+Usage:
+
+From the release/JavaFx-structure-demo/bin folder run:
+
+* MacOS/Linux
+
+>./java -m com.example/com.example.Main
+
+* Windows
+
+>.\javaw -m com.example/com.example.Main
