@@ -50,9 +50,8 @@ MacOS<br />
 
 <h4> Usage </h4>
 
-* compile with Java 9 SDK
-* run with:
-> java -m com.example/com.example.Main
+compile and package with Maven/Java 9 SDK
+* mvn package
 
 <br />
 <h4> Create a reduced native runtime image with jlink </h4>
@@ -62,7 +61,8 @@ Build artifacts (jars) from the modules. From within Intellij choose Build->Buil
 Now the following two jars should have been created under the target folder:
 
 * JavaFx-strucure-demo.jar (including a MANIFEST.MF-file containing "Main-Class: com.example.Main")
-* sqlite-jdbc.jar
+
+Please not that you have to do `mvn install` first on `Puddle` and `sqlite-jdbc-sqlcipher` projects so that the jars is installed in your .m2 maven repo.
 
 Run the following jlink command from the target catalog
 
@@ -70,9 +70,11 @@ Run the following jlink command from the target catalog
 
 >jlink --output release/JavaFx-structure-demo --compress=2 --module-path="JavaFx-structure-demo.jar:sqlite-jdbc.jar:/Library/Java/JavaVirtualMachines/jdk-9.jdk/Contents/Home/jmods" --add-modules com.example,sqlite.jdbc
 
-* Windows (59 MB)
+* Windows (51,4 MB) Obviously this can be stripped down further removing the binaries not used for Windows in `sqlite-jdbc-sqlcipher` project.
 
->jlink --output release/JavaFx-structure-demo --compress=2 --module-path="JavaFx-structure-demo.jar;sqlite-jdbc.jar;C:\Program Files\Java\jdk-9\jmods" --add-modules com.example,sqlite.jdbc
+>jlink --output release/JavaFx-structure-demo --compress=2 --strip-debug --module-path="JavaFx-structure-demo-1.0.jar;%homepath%\.m2\repository\com\creang\Puddle\1.0\Puddle-1.0.jar;%homepath%\.m2\repository\org\xerial\sqlite-jdbc-sqlcipher\3.20.0\sqlite-jdbc-sqlcipher-3.20.0.jar;C:\Program Files\Java\jdk-9\jmods" --add-modules com.example,puddle,sqlite.jdbc
+
+copy the libeay32.dll (shell\Windows\x86_64\libeay32.dll) from the `sqlite-jdbc-sqlcipher` project into your release\JavaFx-structure-demo\bin folder.
 
 * Linux (72 MB)
 
@@ -89,3 +91,5 @@ From the release/JavaFx-structure-demo/bin folder run:
 * Windows
 
 >.\javaw -m com.example/com.example.Main
+
+Use the `javapackager` if you want to make a native package for distribution, more about that [here](https://stackoverflow.com/questions/45446827/error-when-trying-to-package-native-image-with-javapackager-in-java-9-ea)
