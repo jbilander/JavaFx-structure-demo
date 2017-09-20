@@ -2,12 +2,14 @@
 
 * Java SDK 9 Early Access (or later)
 * IntelliJ IDEA 2017.1 (or later with support for Java 9 modules)
+* Maven 3 (maven-compiler-plugin v3.6.2 support for compiling java 9 modules)
 
 <h4> Technologies used </h4>
 
 * JavaFX with Java 9
-* SQLite-native (as backend db, native libs included in sqlite-jdbc resources folder)
-* Xerial SQLite JDBC Driver (v. 3.20.0)
+* [Puddle](https://github.com/jbilander/Puddle) A thread-safe lightweight standalone Java JDBC connection pool manager that I wrote.
+* SQLite-native (as backend db, native x86_64 binary libs included in below driver)
+* [Forked Xerial SQLite JDBC Driver (v3.20.0)](https://github.com/jbilander/sqlite-jdbc) with support for encryption (SQLCipher) 
 
 <h4> About </h4>
 
@@ -21,17 +23,12 @@ the main application windows is being resized.
 
 <h4> Backend </h4>
 
-SQLite with ([Xerial SQLite JDBC Driver](https://github.com/xerial/sqlite-jdbc)) is used as a backend with pure JDBC-calls for instructional purpose.
-The Xerial source is included as a module named *sqlite-jdbc* in the application.
-
-<h4> ToDo </h4>
-
-* Add a logging framework module
-* Add jOOQ as a module (and switch from pure JDBC-calls)
+SQLite with [Forked Xerial SQLite JDBC Driver (v3.20.0)](https://github.com/jbilander/sqlite-jdbc) with support for encryption (SQLCipher) is used as a backend with pure JDBC-calls for instructional purpose.
+The driver has native binary libs (dll, jnilib, so) included for 64-bit Windows x86_64, MacOSX x86_64 and Linux x86_64 platforms.
 
 <h4> Output </h4>
 
-The application creates and populates a JavaFx-structure-demo.db file under the user home directory, System.getProperty("user.home").
+The application creates and populates an encrypted JavaFx-structure-demo.db file under the user home directory, System.getProperty("user.home").
 
 * MacOS
 >/Users/username/JavaFx-structure-demo.db

@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/JavaFx-structure-demo.iml" filepath="$PROJECT_DIR$/JavaFx-structure-demo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sqlite-jdbc/sqlite-jdbc.iml" filepath="$PROJECT_DIR$/sqlite-jdbc/sqlite-jdbc.iml" />
     </modules>
   </component>
 </project>

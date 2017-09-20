@@ -17,12 +17,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="JavaFx-structure-demo" />
-        <module name="sqlite-jdbc" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="JavaFx-structure-demo" target="1.9" />
-      <module name="sqlite-jdbc" target="1.9" />
     </bytecodeTargetLevel>
   </component>
 </project>
