@@ -51,18 +51,11 @@ MacOS<br />
 <h4> Usage </h4>
 
 compile and package with Maven/Java 9 SDK
-* mvn package
+* mvn package<br />
 
-<br />
+Please not that you have to do `mvn install` first on `Puddle` and `sqlite-jdbc-sqlcipher` projects so that the depending jars is installed in your .m2 maven repo.
+
 <h4> Create a reduced native runtime image with jlink </h4>
-
-Build artifacts (jars) from the modules. From within Intellij choose Build->Build Artifacts...
-
-Now the following two jars should have been created under the target folder:
-
-* JavaFx-strucure-demo.jar (including a MANIFEST.MF-file containing "Main-Class: com.example.Main")
-
-Please not that you have to do `mvn install` first on `Puddle` and `sqlite-jdbc-sqlcipher` projects so that the jars is installed in your .m2 maven repo.
 
 Run the following jlink command from the target catalog
 
