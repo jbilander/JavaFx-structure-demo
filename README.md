@@ -59,9 +59,9 @@ Please not that you have to do `mvn install` first on `Puddle` and `sqlite-jdbc-
 
 Run the following jlink command from the target catalog
 
-* MacOS (61 MB)
+* MacOS (51 MB)
 
->jlink --output release/JavaFx-structure-demo --compress=2 --module-path="JavaFx-structure-demo.jar:sqlite-jdbc.jar:/Library/Java/JavaVirtualMachines/jdk-9.jdk/Contents/Home/jmods" --add-modules com.example,sqlite.jdbc
+>jlink --output release/JavaFx-structure-demo --compress=2 --strip-debug --module-path="JavaFx-structure-demo-1.0.jar:$HOME/.m2/repository/com/creang/Puddle/1.0/Puddle-1.0.jar:$HOME/.m2/repository/org/xerial/sqlite-jdbc-sqlcipher/3.20.0/sqlite-jdbc-sqlcipher-3.20.0.jar:/Library/Java/JavaVirtualMachines/jdk-9.jdk/Contents/Home/jmods" --add-modules com.example,puddle,sqlite.jdbc
 
 * Windows (51,4 MB) Obviously this can be stripped down further removing the binaries not used for Windows in `sqlite-jdbc-sqlcipher` project.
 
