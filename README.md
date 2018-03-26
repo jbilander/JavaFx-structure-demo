@@ -61,17 +61,17 @@ Run the following jlink command from the target catalog
 
 * MacOS (51 MB) Obviously this can be stripped down further removing the binaries not used for MacOSX in `sqlite-jdbc-sqlcipher` project.
 
->jlink --output release/JavaFx-structure-demo --compress=2 --strip-debug --module-path="JavaFx-structure-demo-1.0.jar:$HOME/.m2/repository/com/creang/Puddle/1.0/Puddle-1.0.jar:$HOME/.m2/repository/org/xerial/sqlite-jdbc-sqlcipher/3.20.0/sqlite-jdbc-sqlcipher-3.20.0.jar:/Library/Java/JavaVirtualMachines/jdk-9.jdk/Contents/Home/jmods" --add-modules com.example,puddle,sqlite.jdbc
+>jlink --output release/JavaFx-structure-demo --compress=2 --strip-debug --module-path="JavaFx-structure-demo-1.0.jar:$HOME/.m2/repository/org/xerial/sqlite-jdbc-sqlcipher/3.20.0/sqlite-jdbc-sqlcipher-3.20.0.jar:/Library/Java/JavaVirtualMachines/jdk-9.jdk/Contents/Home/jmods" --add-modules sqlite.jdbc
 
 * Windows (51,4 MB) Obviously this can be stripped down further removing the binaries not used for Windows in `sqlite-jdbc-sqlcipher` project.
 
->jlink --output release/JavaFx-structure-demo --compress=2 --strip-debug --module-path="JavaFx-structure-demo-1.0.jar;%homepath%\.m2\repository\com\creang\Puddle\1.0\Puddle-1.0.jar;%homepath%\.m2\repository\org\xerial\sqlite-jdbc-sqlcipher\3.20.0\sqlite-jdbc-sqlcipher-3.20.0.jar;C:\Program Files\Java\jdk-9\jmods" --add-modules com.example,puddle,sqlite.jdbc
+>jlink --output release/JavaFx-structure-demo --compress=2 --strip-debug --module-path="JavaFx-structure-demo-1.0.jar;%homepath%\.m2\repository\org\xerial\sqlite-jdbc-sqlcipher\3.20.0\sqlite-jdbc-sqlcipher-3.20.0.jar;C:\Program Files\Java\jdk-9\jmods" --add-modules sqlite.jdbc
 
 copy the libeay32.dll (shell\Windows\x86_64\libeay32.dll) from the `sqlite-jdbc-sqlcipher` project into your release\JavaFx-structure-demo\bin folder.
 
 * Linux (62 MB) Obviously this can be stripped down further removing the binaries not used for Linux in `sqlite-jdbc-sqlcipher` project.
 
->jlink --output release/JavaFx-structure-demo --compress=2 --strip-debug --module-path="JavaFx-structure-demo-1.0.jar:$HOME/.m2/repository/com/creang/Puddle/1.0/Puddle-1.0.jar:$HOME/.m2/repository/org/xerial/sqlite-jdbc-sqlcipher/3.20.0/sqlite-jdbc-sqlcipher-3.20.0.jar:/opt/jdk-9/jmods" --add-modules com.example,puddle,sqlite.jdbc
+>jlink --output release/JavaFx-structure-demo --compress=2 --strip-debug --module-path="JavaFx-structure-demo-1.0.jar:$HOME/.m2/repository/org/xerial/sqlite-jdbc-sqlcipher/3.20.0/sqlite-jdbc-sqlcipher-3.20.0.jar:/opt/jdk-9/jmods" --add-modules sqlite.jdbc
 
 Usage:
 
