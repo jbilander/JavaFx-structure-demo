@@ -19,7 +19,7 @@ with using direct calls with interfaces over events because that makes it easier
 not use any dependency injection framework such as guice since I wanted to keep it as pure Java 9 as possible for instructional purposes.
 This app is also built with the new module approach in Java 9. The UI is built with pure Java code instead of using fxml since I prefer
 it that way giving me more control over my code. Also the UI is built to be resizable meaning the UI-components adapt their size when 
-the main application windows is being resized.
+the main application window is being resized.
 
 <h4> Backend </h4>
 
