@@ -1,7 +1,5 @@
 package com.example.service;
 
-import com.creang.puddle.MiniConnectionPoolManager;
-import com.creang.puddle.Util;
 import com.example.db.ConnectionPoolHelper;
 import com.example.model.Participant;
 import com.example.model.Race;
@@ -15,33 +13,23 @@ import java.util.logging.Logger;
 public enum RaceCardService implements IRaceCardService {
     INSTANCE;
 
-    private final static Logger LOGGER = Logger.getLogger(RaceCardService.class.getName());
-    private ConnectionPoolHelper connectionPoolHelper = ConnectionPoolHelper.getInstance();
-    private MiniConnectionPoolManager poolManager = connectionPoolHelper.getMiniConnectionPoolManager();
-    private List<Integer> raceCardIds = new ArrayList<>();
+    private final static Logger logger = Logger.getLogger(RaceCardService.class.getName());
+    private final ConnectionPoolHelper connectionPoolHelper = ConnectionPoolHelper.getInstance();
 
     @Override
     public List<Integer> getRaceCardIds() {
 
-        raceCardIds.clear();
+        List<Integer> raceCardIds = new ArrayList<>();
 
-        Connection conn = null;
-        Statement stmnt = null;
-        ResultSet rs = null;
-
-        try {
-            conn = poolManager.getValidConnection(3);
-            stmnt = conn.createStatement();
-            rs = stmnt.executeQuery("select Id from racecard order by SortOrder");
-            while (rs.next()) {
-                raceCardIds.add(rs.getInt("Id"));
+        try (Connection conn = connectionPoolHelper.getDataSource().getPooledConnection().getConnection()) {
+            try (Statement stmnt = conn.createStatement()) {
+                ResultSet rs = stmnt.executeQuery("select Id from racecard order by SortOrder");
+                while (rs != null && rs.next()) {
+                    raceCardIds.add(rs.getInt(1));
+                }
             }
         } catch (SQLException e) {
-            LOGGER.severe(e.getMessage());
-        } finally {
-            Util.closeResultSet(rs);
-            Util.closeStatement(stmnt);
-            poolManager.release(conn);
+            logger.severe(e.getMessage());
         }
 
         return raceCardIds;
@@ -51,55 +39,48 @@ public enum RaceCardService implements IRaceCardService {
     public RaceCard getRaceCard(int raceCardId) {
 
         RaceCard raceCard = null;
-        Connection conn = null;
-        PreparedStatement prepStmnt = null;
-        ResultSet rs = null;
 
-        try {
-            conn = poolManager.getValidConnection(3);
-            prepStmnt = conn.prepareStatement("select Id, SortOrder, EventDesc from racecard where Id = ?");
-            prepStmnt.setInt(1, raceCardId);
-            rs = prepStmnt.executeQuery();
-            while (rs.next()) {
-                raceCard = new RaceCard(rs.getInt("Id"), rs.getInt("SortOrder"), rs.getString("EventDesc"));
-            }
-            rs.close();
-            prepStmnt.close();
+        String sql1 = "select Id, SortOrder, EventDesc from racecard where Id = ?";
+        String sql2 = "select Id, HeatNumber from race where RaceCardId = ?";
+        String sql3 = "select Lane, StartNumber, FirstName, LastName, Country, SB2017, PB from participant where RaceId = ?";
 
-            prepStmnt = conn.prepareStatement("select Id, HeatNumber from race where RaceCardId = ?");
-            prepStmnt.setInt(1, raceCard.getId());
-            rs = prepStmnt.executeQuery();
+        try (Connection conn = connectionPoolHelper.getDataSource().getPooledConnection().getConnection()) {
+            try (PreparedStatement ps = conn.prepareStatement(sql1)) {
+                try (PreparedStatement ps2 = conn.prepareStatement(sql2)) {
+                    try (PreparedStatement ps3 = conn.prepareStatement(sql3)) {
 
-            while (rs.next()) {
-                Race race = new Race(rs.getInt("Id"), rs.getInt("HeatNumber"));
-                raceCard.getRaces().add(race);
-            }
-            rs.close();
-            prepStmnt.close();
+                        ps.setInt(1, raceCardId);
+                        ResultSet rs = ps.executeQuery();
 
-            prepStmnt = conn.prepareStatement("select Lane, StartNumber, FirstName, LastName, Country, SB2017, PB from participant where RaceId = ?");
-            for (Race race : raceCard.getRaces()) {
-                prepStmnt.setInt(1, race.getId());
-                rs = prepStmnt.executeQuery();
-                while (rs.next()) {
-                    race.getParticipants().add(createParticipant(rs.getInt("Lane"), rs.getInt("StartNumber"), rs.getString("FirstName"), rs.getString("LastName"), rs.getString("Country"), rs.getDouble("SB2017"), rs.getDouble("PB")));
+                        if (rs != null && rs.next()) {
+
+                            raceCard = new RaceCard(rs.getInt(1), rs.getInt(2), rs.getString(3));
+
+                            ps2.setInt(1, raceCard.getId());
+                            ResultSet rs2 = ps2.executeQuery();
+
+                            while (rs2 != null && rs2.next()) {
+
+                                Race race = new Race(rs2.getInt(1), rs2.getInt(2));
+                                ps3.setInt(1, race.getId());
+
+                                try (ResultSet rs3 = ps3.executeQuery()) {
+                                    while (rs3 != null && rs3.next()) {
+                                        race.getParticipants().add(new Participant(rs3.getInt(1), rs3.getInt(2), rs3.getString(3), rs3.getString(4), rs3.getString(5), rs3.getDouble(6), rs3.getDouble(7)));
+                                    }
+                                }
+
+                                raceCard.getRaces().add(race);
+                            }
+                        }
+                    }
                 }
             }
-
         } catch (SQLException e) {
-            LOGGER.severe(e.getMessage());
-        } finally {
-            Util.closeResultSet(rs);
-            Util.closeStatement(prepStmnt);
-            poolManager.release(conn);
+            logger.severe(e.getMessage());
         }
 
         return raceCard;
-    }
-
-    private Participant createParticipant(int lane, int startNumber, String firstname, String lastname, String country, double sb2017, double pb) {
-        Participant participant = new Participant(lane, startNumber, firstname, lastname, country, sb2017, pb);
-        return participant;
     }
 
     public static RaceCardService getInstance() {

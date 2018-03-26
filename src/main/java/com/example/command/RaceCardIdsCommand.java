@@ -9,7 +9,7 @@ import java.util.List;
 
 public class RaceCardIdsCommand extends Service<List<Integer>> {
 
-    private IRaceCardService raceCardService = RaceCardService.getInstance();
+    private final IRaceCardService raceCardService = RaceCardService.getInstance();
 
     @Override
     protected Task<List<Integer>> createTask() {

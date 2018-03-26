@@ -4,7 +4,7 @@ import com.example.command.InitDbCommand;
 
 public class RootMediator implements IRootMediator {
 
-    InitDbCommand initDbCommand = new InitDbCommand();
+    private final InitDbCommand initDbCommand = new InitDbCommand();
 
     @Override
     public void initDb() {

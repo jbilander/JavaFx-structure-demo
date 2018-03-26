@@ -6,8 +6,8 @@
 
 <h4> Technologies used </h4>
 
-* JavaFX with Java 9
-* [Puddle](https://github.com/jbilander/Puddle) A thread-safe lightweight standalone Java JDBC connection pool manager that I wrote.
+* JavaFX with Java 9 (using modules)
+* SQLiteConnectionPoolDataSource
 * SQLite-native (as backend db, native x86_64 binary libs included in below driver)
 * [Forked Xerial SQLite JDBC Driver (v3.20.0)](https://github.com/jbilander/sqlite-jdbc) with support for encryption (SQLCipher) 
 
@@ -53,7 +53,7 @@ MacOS<br />
 compile and package with Maven/Java 9 SDK
 * mvn package<br />
 
-Please not that you have to do `mvn install` first on `Puddle` and `sqlite-jdbc-sqlcipher` projects so that the depending jars is installed in your .m2 maven repo.
+Please note that you have to do `mvn install` first on `sqlite-jdbc-sqlcipher` projects so that the depending jar is installed in your .m2 maven repo.
 
 <h4> Create a reduced native runtime image with jlink </h4>
 

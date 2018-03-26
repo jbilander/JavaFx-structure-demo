@@ -5,15 +5,13 @@ import com.example.model.Race;
 import com.example.model.RaceCard;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 public enum RaceCardServiceStub implements IRaceCardService {
     INSTANCE;
 
-    private List<RaceCard> raceCards = new ArrayList<>();
-    private List<Integer> ids = new ArrayList<>();
+    private final List<RaceCard> raceCards = new ArrayList<>();
 
     RaceCardServiceStub() {
 
@@ -89,13 +87,13 @@ public enum RaceCardServiceStub implements IRaceCardService {
 
         raceCards.add(raceCard);
 
-        Collections.sort(raceCards, (Comparator.comparingInt(RaceCard::getSortOrder)));
+        raceCards.sort(Comparator.comparingInt(RaceCard::getSortOrder));
     }
 
     @Override
     public List<Integer> getRaceCardIds() {
 
-        ids.clear();
+        List<Integer> ids = new ArrayList<>();
         raceCards.forEach(rc -> ids.add(rc.getId()));
 
         return ids;

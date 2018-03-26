@@ -4,7 +4,7 @@ import com.example.service.InitDbService;
 
 public class InitDbCommand {
 
-    InitDbService initDbService = new InitDbService();
+    private final InitDbService initDbService = new InitDbService();
 
     public void initDb() {
         initDbService.initDb();

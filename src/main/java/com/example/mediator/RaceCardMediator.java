@@ -11,9 +11,9 @@ import java.util.List;
 
 public class RaceCardMediator implements IRaceCardMediator {
 
-    private RaceCardIdsCommand raceCardIdsCommand = new RaceCardIdsCommand();
-    private RaceCardCommand raceCardCommand = new RaceCardCommand();
-    private IRaceCardView raceCardView;
+    private final RaceCardIdsCommand raceCardIdsCommand = new RaceCardIdsCommand();
+    private final RaceCardCommand raceCardCommand = new RaceCardCommand();
+    private final IRaceCardView raceCardView;
 
     public RaceCardMediator(IRaceCardView raceCardView) {
         this.raceCardView = raceCardView;

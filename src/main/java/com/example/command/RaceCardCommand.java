@@ -9,7 +9,7 @@ import javafx.concurrent.Task;
 public class RaceCardCommand extends Service<RaceCard> {
 
     private int raceCardId;
-    private IRaceCardService raceCardService = RaceCardService.getInstance();
+    private final IRaceCardService raceCardService = RaceCardService.getInstance();
 
     public void setRaceCardId(int raceCardId) {
         this.raceCardId = raceCardId;
@@ -19,7 +19,7 @@ public class RaceCardCommand extends Service<RaceCard> {
     protected Task<RaceCard> createTask() {
         return new Task<>() {
             @Override
-            protected RaceCard call() throws Exception {
+            protected RaceCard call() {
                 return raceCardService.getRaceCard(raceCardId);
             }
         };

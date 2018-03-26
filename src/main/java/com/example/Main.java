@@ -1,8 +1,6 @@
 package com.example;
 
-import com.creang.puddle.MiniConnectionPoolManager;
 import com.example.common.Util;
-import com.example.db.ConnectionPoolHelper;
 import com.example.view.RootView;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -12,17 +10,12 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    private ConnectionPoolHelper connectionPoolHelper = ConnectionPoolHelper.getInstance();
-    private MiniConnectionPoolManager poolManager = connectionPoolHelper.getMiniConnectionPoolManager();
-
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
 
         if (!(Util.isWindows() || Util.isMac())) { //Load Arial font for all *nix platforms
             Font.loadFont(getClass().getClassLoader().getResource("Arial.ttf").toExternalForm(), 12);
         }
-
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> poolManager.disposePool()));
 
         RootView rootView = new RootView();
         Pane root = rootView.getView();
